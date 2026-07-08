@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchCategories, fetchMealsByCategory, fetchMealsBySearch, fetchMealById, Meal } from "@/lib/api";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -44,8 +44,13 @@ export default function Home() {
         toast.success("Removed from favorites");
       } else {
         const fullMeal = await fetchMealById(meal.idMeal);
-        await saveFavorite(fullMeal);
-        await cacheImageOffline(fullMeal.strMealThumb);
+        if (fullMeal) {
+          await saveFavorite(fullMeal);
+          await cacheImageOffline(fullMeal.strMealThumb);
+        } else {
+          await saveFavorite(meal);
+          await cacheImageOffline(meal.strMealThumb);
+        }
         toast.success("Saved to favorites", { description: "Available offline" });
       }
       queryClient.invalidateQueries({ queryKey: ["favoritesList"] });

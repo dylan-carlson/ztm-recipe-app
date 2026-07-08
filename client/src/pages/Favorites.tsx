@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Meal } from "@/lib/api";
 import { getAllFavorites, removeFavorite } from "@/features/favorites/db";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { HeartOff, ImageOff, WifiOff, Heart } from "lucide-react";

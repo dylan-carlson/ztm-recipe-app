@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMealById, Meal } from "@/lib/api";
+import { fetchMealById } from "@/lib/api";
 import { saveFavorite, removeFavorite, getFavorite, cacheImageOffline } from "@/features/favorites/db";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
